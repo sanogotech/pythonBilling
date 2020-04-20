@@ -145,7 +145,8 @@ def getItemLists():
     cursor.execute(query)
     data = cursor.fetchall()
     for row in data:
-        updateTV.insert('','end',text=row['nameid'],values=(row['name'],row['rate'],row['type'],row['storetype']))
+        currentStoreType =row.get('storetype')
+        updateTV.insert('','end',text=row['nameid'],values=(row['name'],row['rate'],row['type'],currentStoreType))
     updateTV.bind("<Double-1>",OnDoubleClick)
 
     conn.close()
